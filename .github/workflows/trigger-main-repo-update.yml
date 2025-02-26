@@ -1,0 +1,21 @@
+name: Trigger Main Repo Submodule Update
+
+on:
+  push:
+    branches:
+      - main # Or your main branch in the submodule repo
+
+jobs:
+  trigger_dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch repository_dispatch event
+        run: |
+          gh api -X POST \
+          -H "Accept: application/vnd.github+json" \
+          -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+          /repos/tristie/thetestmainfolderpagessubmodule/dispatches \
+          -f event_type=submodule-updated # You can choose any event_type
+
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
