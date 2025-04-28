@@ -12,6 +12,8 @@ jobs:
       actions: read
       id-token: write
       contents: read
+      issues: write
+      pull-requests: write
     steps:
       - name: Trigger Repository Dispatch on pages repo
         uses: actions/github-script@v7
