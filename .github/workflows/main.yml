@@ -14,7 +14,7 @@ jobs:
         with:
           script: |
             await github.rest.repos.createDispatchEvent({
-              owner: ${{ github.event.repository.owner.login }},
+              owner: '${{ github.event.repository.owner.login }}',
               repo: 'thetestmainfolderpagessubmodule',
               event_type: 'subpage-updated',
             });
