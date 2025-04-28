@@ -9,13 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
-      - name: Trigger Repository Dispatch in BASE
+      - name: Trigger Repository Dispatch on pages repo
         uses: actions/github-script@v7
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            await octokit.rest.repos.createDispatchEvent({
-              owner: 'Tristie',
+            await github.rest.repos.createDispatchEvent({
+              owner: ${{ github.event.repository.owner.login }},
               repo: 'thetestmainfolderpagessubmodule',
               event_type: 'subpage-updated',
             });
+        env:
+          GITHUB_TOKEN: ${{ secrets.REPO_DISPATCH_TOKEN }}
