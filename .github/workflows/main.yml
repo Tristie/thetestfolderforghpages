@@ -21,4 +21,4 @@ jobs:
               event_type: 'subpage-updated',
             });
         env:
-          GITHUB_TOKEN: ${{ secrets.REPO_DISPATCH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
